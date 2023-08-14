@@ -1,0 +1,2 @@
+- name: Deploy AWS Lightsail Container
+  uses: fdiesel/github-action-deploy-aws-lightsail-container@v2.0.1
