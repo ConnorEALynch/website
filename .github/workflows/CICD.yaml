@@ -27,15 +27,16 @@ jobs:
         with:
           context: .
           push: false
-          tags: test
+          tags: reverseproxy
           
       - name: Deploy AWS Lightsail Container
         uses: fdiesel/github-action-deploy-aws-lightsail-container@v2.0.1
         with:
             image-name: nginx-cert
-            image: test:latest
+            image: reverseproxy:latest
             aws-region: ${{ secrets.AWS_REGION }}
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-access-key: ${{ secrets.AWS_ACCESS_KEY }}
-            aws-lightsail-service: ${{ secrets.AWS_LIGHTSAIL_SERVICE }}   
+            aws-lightsail-service: ${{ secrets.AWS_LIGHTSAIL_SERVICE }}  
+            aws-lightsail-service-config: ${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}            
             aws-lightsail-clear-images: false
