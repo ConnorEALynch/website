@@ -23,7 +23,7 @@ jobs:
         uses: fdiesel/github-action-deploy-aws-lightsail-container@v2.0.1
         with:
             image-name: nginx-cert
-            image: nginx:latest
+            image: public.ecr.aws/nginx/nginx:latest
             aws-region: ${{ secrets.AWS_REGION }}
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-access-key: ${{ secrets.AWS_ACCESS_KEY }}
