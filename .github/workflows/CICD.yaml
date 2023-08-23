@@ -19,14 +19,14 @@ jobs:
   Push-to-Lightsail:
     runs-on: ubuntu-latest
     steps:
-        - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Build
-      uses: docker/build-push-action@v4.0.0
-      with:
-        context: .
-        push: false
+      - name: Build
+        uses: docker/build-push-action@v4.0.0
+        with:
+          context: .
+          push: false
         
       - name: Deploy AWS Lightsail Container
         uses: fdiesel/github-action-deploy-aws-lightsail-container@v2.0.1
