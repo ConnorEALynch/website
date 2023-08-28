@@ -1,0 +1,19 @@
+# Local Dev docker-compose
+version: '2.2'
+networks:
+  default:
+    name: website-development
+services:
+  nginx-dev:
+    container_name: nginx-dev
+    hostname: nginx-dev
+    image: reverseproxy:latest
+    build:
+      dockerfile: Dockerfile
+      context: .
+    #environment:
+    #env_file: .env
+    #working_dir:
+    ports:
+      - '8080:80'
+      - '4433:443'
