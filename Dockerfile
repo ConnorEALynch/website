@@ -1,6 +1,6 @@
 FROM nginx
 
-RUN chmod +x docker-entrypoint.sh
+RUN chmod 777 docker-entrypoint.sh
 
 COPY ./html /var/www/html
 COPY ./config/nginx.conf /etc/nginx/conf.d/nginx.conf 
