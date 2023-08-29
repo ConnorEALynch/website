@@ -10,4 +10,4 @@ RUN apt-get update
 RUN apt-get install -y certbot 
 RUN apt-get install -y python3-certbot-nginx
 
-RUN chmod -R 777 docker-entrypoint.sh
+RUN chmod 777 docker-entrypoint.sh
