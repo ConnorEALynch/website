@@ -16,4 +16,4 @@ RUN apt-get install -y certbot
 RUN apt-get install -y python3-certbot-nginx
 
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx-debug", "-g", "daemon off;"]
