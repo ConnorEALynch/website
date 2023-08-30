@@ -12,3 +12,6 @@ EXPOSE 443
 RUN apt-get update
 RUN apt-get install -y certbot 
 RUN apt-get install -y python3-certbot-nginx
+
+
+CMD ["nginx", "-g", "daemon off;"]
