@@ -45,9 +45,9 @@ if [ "$1" = "nginx" ] || [ "$1" = "nginx-debug" ]; then
 fi
 
 
-certbot --nginx -d connorlynch.ca -d www.connorlynch.ca -d collection.connorlynch.ca --non-interactive --agree-tos -m connorealynch@gmail.com
+#certbot --nginx -d connorlynch.ca -d www.connorlynch.ca -d collection.connorlynch.ca --non-interactive --agree-tos -m connorealynch@gmail.com
+certbot certonly -a webroot -w /var/www/html -d www.connorlynch.ca -d connorlynch.ca -i nginx --non-interactive --agree-tos -m connorealynch@gmail.com
 
-certbot --nginx -v
 
 cat /var/log/letsencrypt/letsencrypt.log
 exec "$@"
