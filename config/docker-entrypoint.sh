@@ -44,10 +44,7 @@ if [ "$1" = "nginx" ] || [ "$1" = "nginx-debug" ]; then
     fi
 fi
 
+#lego --accept-tos --email="connorealynch@gmail.com" -d "connorlynch.ca"  -d "www.connorlynch.ca"  -d "collection.connorlynch.ca" --http run  
+lego --accept-tos --email="connorealynch@gmail.com" -d "connorlynch.ca"  -d "www.connorlynch.ca"  -d "collection.connorlynch.ca" --dns lightsail run
 
-certbot --nginx -d connorlynch.ca -d www.connorlynch.ca --non-interactive --agree-tos -m connorealynch@gmail.com
-#certbot certonly -i webroot -w /var/www/html -d www.connorlynch.ca -d connorlynch.ca -a nginx --non-interactive --agree-tos -m connorealynch@gmail.com
-
-
-cat /var/log/letsencrypt/letsencrypt.log
 exec "$@"
