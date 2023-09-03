@@ -45,6 +45,6 @@ if [ "$1" = "nginx" ] || [ "$1" = "nginx-debug" ]; then
 fi
 
 #lego --accept-tos --email="connorealynch@gmail.com" -d "connorlynch.ca"  -d "www.connorlynch.ca"  -d "collection.connorlynch.ca" --http run  
-lego --accept-tos --email="connorealynch@gmail.com" -d "connorlynch.ca"  -d "www.connorlynch.ca"  -d "collection.connorlynch.ca" --dns lightsail run
+lego --accept-tos --email="connorealynch@gmail.com" -d "connorlynch.ca"  -d "*.connorlynch.ca" --dns lightsail run
 
 exec "$@"
