@@ -8,7 +8,7 @@ COPY ./config/lego-script.sh /etc/nginx/lego-script.sh
 
 RUN chmod 755 docker-entrypoint.sh
 RUN chmod -R 755 /docker-entrypoint.d
-RUN chmod 644 /etc/nginx/lego-script.sh
+RUN chmod 755 /etc/nginx/lego-script.sh
 
 EXPOSE 80
 EXPOSE 443
