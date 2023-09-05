@@ -44,6 +44,6 @@ if [ "$1" = "nginx" ] || [ "$1" = "nginx-debug" ]; then
     fi
 fi
 
-# MODE=run /app/run.sh
+MODE=run /etc/nginx/lego-script.sh
 
 exec "$@"
