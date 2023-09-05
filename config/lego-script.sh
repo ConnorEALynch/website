@@ -1,0 +1,1 @@
+lego --accept-tos --email="connorealynch@gmail.com" -d "connorlynch.ca"  -d "*.connorlynch.ca" --dns lightsail $MODE
