@@ -44,7 +44,7 @@ if [ "$1" = "nginx" ] || [ "$1" = "nginx-debug" ]; then
     fi
 fi
 
-if $ENVIROMENT = prod ; then
+if [ "$ENVIROMENT" =  prod ]; then
 	MODE=run /etc/nginx/lego-script.sh
 fi 
 

@@ -1,0 +1,20 @@
+# prod docker-compose
+version: '2.2'
+networks:
+  default:
+    name: website
+services:
+  nginx:
+    container_name: website-proxy
+    hostname: website-proxy
+    image: reverseproxy:latest
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    environment:
+        - ENVIROMENT=dev
+    #env_file: .env
+    #working_dir:
+    ports:
+      - '80:80'
+      - '443:443'
