@@ -52,7 +52,8 @@ jobs:
       - name: push-container-and-deploy
         env:
           AWS_LIGHTSAIL_CONFIG: ${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}
-          
+         
+        shell: bash         
         run: |
           echo "pushing container"
           # upload the docker image for this pipeline
@@ -62,8 +63,8 @@ jobs:
             --image reverseproxy
 
           # get uploaded image (its different every time)
-          IMAGE_TAG=$(aws lightsail get-container-images --service connorlynch-website-containers | jq -r .containerImages[0].image)
+          #IMAGE_TAG=$(aws lightsail get-container-images --service connorlynch-website-containers | jq -r .containerImages[0].image)
          
-          aws lightsail create-container-service-deployment --cli-input-json '$AWS_LIGHTSAIL_CONFIG' > /dev/null
+          aws lightsail create-container-service-deployment --region ${{ secrets.AWS_REGION }} --cli-input-json '${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}' > /dev/null
 
             
