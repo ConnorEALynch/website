@@ -28,5 +28,4 @@ RUN apt-get update
 
 USER nginx
 
-ENTRYPOINT ["nginx"]
-CMD [ "-q", "-g", "daemon off;"]
+ENTRYPOINT ["/docker-entrypoint.sh"]

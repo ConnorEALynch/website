@@ -47,4 +47,4 @@ fi
 
 # MODE=run /etc/nginx/lego-script.sh
 
-exec "$@"
+exec nginx -q -g "daemon off;"
