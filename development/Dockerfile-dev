@@ -18,4 +18,4 @@ EXPOSE 443
 #get package updates for image and install needed software
 RUN apt-get update
 
-CMD ["nginx-debug", "-g", "daemon off;"]
+
