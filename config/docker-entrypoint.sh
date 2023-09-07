@@ -47,5 +47,5 @@ fi
 
 # MODE=run /etc/nginx/lego-script.sh
 
-
+echo "$@"
 exec "$@"
