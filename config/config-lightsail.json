@@ -1,0 +1,32 @@
+{
+     "serviceName": "connorlynch-website-containers",
+    "containers": {
+       "reverseproxy": {
+            "image": ":connorlynch-website-containers.reverseproxy.latest",
+            "command": [
+                ""
+            ],
+           "environment": {
+                "AWS_ACCESS_KEY_ID":"AKIAYRN23QCGHOMUTRHZ",
+				"AWS_SECRET_ACCESS_KEY":"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",
+				"DNS_ZONE":"connorlynch.ca"
+            },
+            "ports": {
+                "80": "HTTP",
+				"443": "HTTPS"
+            }
+        }
+    },
+    "publicEndpoint": {
+        "containerName": "reverseproxy",
+        "containerPort": 80,
+        "healthCheck": {
+            "healthyThreshold": 2,
+            "unhealthyThreshold": 2,
+            "timeoutSeconds": 2,
+            "intervalSeconds": 5,
+            "path": "/",
+            "successCodes": "200-499"
+        }
+    }
+}

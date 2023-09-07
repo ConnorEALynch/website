@@ -50,7 +50,9 @@ jobs:
           curl https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl -o /usr/local/bin/lightsailctl
           chmod +x /usr/local/bin/lightsailctl
       - name: push-container-and-deploy
-        run: |
+        env:
+          AWS_LIGHTSAIL_CONFIG: ${{secrets.AWS_LIGHTSAIL_SERVICE_CONFIG}}
+        run |
           echo "pushing container"
           # upload the docker image for this pipeline
           aws lightsail push-container-image \
@@ -61,6 +63,6 @@ jobs:
           # get uploaded image (its different every time)
           IMAGE_TAG=$(aws lightsail get-container-images --service connorlynch-website-containers | jq -r .containerImages[0].image)
          
-          aws lightsail create-container-service-deployment --cli-input-json ${{secrets.AWS_LIGHTSAIL_SERVICE_CONFIG}}
+          aws lightsail create-container-service-deployment debug true --cli-input-json $AWS_LIGHTSAIL_CONFIG
 
             
