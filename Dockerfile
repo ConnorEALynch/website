@@ -3,7 +3,6 @@ FROM nginx
 #move files from repo into container being built
 COPY ./html /var/www/html
 COPY ./development/www.connorlynch.ca.conf /etc/nginx/conf.d/www.connorlynch.ca.conf 
-COPY ./config/nginx.conf /etc/nginx/nginx.conf
 COPY ./config/docker-entrypoint.sh /docker-entrypoint.sh 
 COPY ./config/lego-script.sh /etc/nginx/lego-script.sh
 
@@ -11,13 +10,6 @@ COPY ./config/lego-script.sh /etc/nginx/lego-script.sh
 RUN chmod 755 docker-entrypoint.sh
 RUN chmod -R 755 /docker-entrypoint.d
 RUN chmod 755 /etc/nginx/lego-script.sh
-
-# add permissions for nginx user
-RUN chown -R nginx:nginx /var/cache/nginx && \
-	chown -R nginx:nginx /var/log/nginx && \
-	chown -R nginx:nginx /etc/nginx/conf.d
-RUN touch /var/run/nginx.pid && \
-	chown -R nginx:nginx /var/run/nginx.pid
 
 #enable ports for http(s) communication
 EXPOSE 80
@@ -30,6 +22,5 @@ RUN apt-get -y install cron
 
 RUN crontab -l | { cat; echo "7 */12 * * * bash MODE=renew /etc/nginx/lego-script.sh"; } | crontab -
 
-USER nginx
-
 ENTRYPOINT ["nginx"]
+CMD [ "-q", "-g", "daemon off;"]
