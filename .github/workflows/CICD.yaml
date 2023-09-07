@@ -1,3 +1,6 @@
+#derived from examples used from:
+https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
+https://github.com/strategio-tech/fp-sim5-ec2read/blob/master/.github/workflows/main.yml
 name: GitHub Actions test
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
@@ -62,6 +65,6 @@ jobs:
             --label reverseproxy \
             --image reverseproxy
          
-          aws lightsail create-container-service-deployment --region ${{ secrets.AWS_REGION }} --cli-input-json '${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}' > /dev/null
+          aws lightsail create-container-service-deployment --region ${{ secrets.AWS_REGION }} --cli-input-json '${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}' 
 
             
