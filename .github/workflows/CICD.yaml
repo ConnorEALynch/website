@@ -53,7 +53,7 @@ jobs:
         env:
           AWS_LIGHTSAIL_CONFIG: ${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}
           
-        run |
+        run: |
           echo "pushing container"
           # upload the docker image for this pipeline
           aws lightsail push-container-image \
