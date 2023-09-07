@@ -1,6 +1,3 @@
-#derived from examples used from:
-https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
-https://github.com/strategio-tech/fp-sim5-ec2read/blob/master/.github/workflows/main.yml
 name: GitHub Actions test
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
@@ -20,6 +17,9 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
   Push-to-Lightsail:
+  #derived from examples used from:
+  #https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
+  #https://github.com/strategio-tech/fp-sim5-ec2read/blob/master/.github/workflows/main.yml
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
