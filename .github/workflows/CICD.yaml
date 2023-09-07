@@ -64,6 +64,6 @@ jobs:
           # get uploaded image (its different every time)
           IMAGE_TAG=$(aws lightsail get-container-images --service connorlynch-website-containers | jq -r .containerImages[0].image)
          
-          aws lightsail create-container-service-deployment --cli-input-json '$AWS_LIGHTSAIL_CONFIG'
+          aws lightsail create-container-service-deployment --cli-input-json '$AWS_LIGHTSAIL_CONFIG' > /dev/null
 
             
