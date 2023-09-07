@@ -31,4 +31,4 @@ RUN apt-get -y install cron
 RUN crontab -l | { cat; echo "7 */12 * * * bash MODE=renew /etc/nginx/lego-script.sh"; } | crontab -
 
 
-CMD ["nginx","-q", "-g", "daemon off;"]
+ENTRYPOINT ["nginx","-q", "-g", "daemon off;"]
