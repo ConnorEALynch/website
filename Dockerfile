@@ -32,4 +32,4 @@ RUN crontab -l | { cat; echo "7 */12 * * * bash MODE=renew /etc/nginx/lego-scrip
 
 USER nginx
 
-ENTRYPOINT ["nginx", "-q", "-g", "daemon off;"]
+ENTRYPOINT ["nginx"]
