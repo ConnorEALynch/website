@@ -28,4 +28,4 @@ RUN apt-get update
 
 USER nginx
 
-ENTRYPOINT ["nginx","-q", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
