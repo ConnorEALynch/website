@@ -51,7 +51,7 @@ jobs:
           chmod +x /usr/local/bin/lightsailctl
       - name: push-container-and-deploy
         env:
-          AWS_LIGHTSAIL_CONFIG: ${{secrets.AWS_LIGHTSAIL_SERVICE_CONFIG}}
+          AWS_LIGHTSAIL_CONFIG: ${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}
           
         run |
           echo "pushing container"
