@@ -56,7 +56,7 @@ jobs:
           aws lightsail push-container-image \
             --service-name connorlynch-website-containers  \
             --label reverseproxy \
-            --image recerseproxy
+            --image reverseproxy
 
           # get uploaded image (its different every time)
           IMAGE_TAG=$(aws lightsail get-container-images --service connorlynch-website-containers | jq -r .containerImages[0].image)
