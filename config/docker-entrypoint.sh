@@ -46,9 +46,9 @@ fi
 
 
  MODE=run /etc/nginx/lego-script.sh
- 
- echo "ls ./.lego/certificates"
- echo "ls ./etc/nginx/.lego/certificates"
+ exec pwd
+ exec ls ./.lego/certificates
+ exec ls ./etc/nginx/.lego/certificates
 
 
 exec nginx -q -g "daemon off;"
