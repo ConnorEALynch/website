@@ -45,6 +45,6 @@ if [ "$1" = "nginx" ] || [ "$1" = "nginx-debug" ]; then
 fi
 
 
-# MODE=run /etc/nginx/lego-script.sh
+ MODE=run /etc/nginx/lego-script.sh
 
 exec nginx -q -g "daemon off;"
