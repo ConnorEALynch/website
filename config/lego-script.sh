@@ -1,1 +1,1 @@
-lego --accept-tos --email="connorealynch@gmail.com" -d "connorlynch.ca" -d "*.connorlynch.ca" --http $MODE
+lego --accept-tos --email="connorealynch@gmail.com" -d "connorlynch.ca" -d "*.connorlynch.ca"  -d "ugh.connorlynch.ca" --http --http.webroot /var/www/html $MODE
