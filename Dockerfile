@@ -17,9 +17,9 @@ EXPOSE 443
 
 #get package updates for image and install needed software
 RUN apt-get update
-RUN apt-get -y install lego
+#RUN apt-get -y install lego
 #RUN apt-get -y install cron
 
-#RUN crontab -l | { cat; echo "7 */12 * * * bash MODE=renew /etc/nginx/lego-script.sh"; } | crontab -
+RUN crontab -l | { cat; echo "7 */12 * * * bash MODE=renew /etc/nginx/lego-script.sh"; } | crontab -
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
