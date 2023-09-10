@@ -17,7 +17,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
   Push-to-Lightsail:
-  #derived from examples used from:
+  #derived from examples used in:
   #https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
   #https://github.com/strategio-tech/fp-sim5-ec2read/blob/master/.github/workflows/main.yml
     runs-on: ubuntu-latest
