@@ -5,15 +5,20 @@ networks:
     name: website-development
 services:
   nginx-dev:
-    container_name: wbesite-proxy-dev
+    container_name: website-proxy-dev
     hostname: website-proxy-dev
     image: reverseproxy:latest
     build:
       dockerfile: ./development/Dockerfile-dev
       context: ..
-    environment:
-        - ENVIROMENT=dev
-    #env_file: .env
+    #environment:
+    #  - AWS_ACCESS_KEY_ID
+    #  - AWS_SECRET_ACCESS_KEY
+    #  - REGION
+    #  - CERT_NAME
+    #  - DISTR_NAME
+    #  - DOMAINS
+    env_file: ../.env
     #working_dir:
     ports:
       - '8080:80'

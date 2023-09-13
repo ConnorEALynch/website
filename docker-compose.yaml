@@ -11,9 +11,14 @@ services:
     build:
       dockerfile: ./Dockerfile
       context: .
-    environment:
-        - ENVIROMENT=dev
-    #env_file: .env
+    #environment:
+    #  - AWS_ACCESS_KEY_ID
+    #  - AWS_SECRET_ACCESS_KEY
+    #  - REGION
+    #  - CERT_NAME
+    #  - DIST_NAME
+    #  - DOMAINS
+    env_file: .env
     #working_dir:
     ports:
       - '80:80'

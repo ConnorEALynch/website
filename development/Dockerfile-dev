@@ -3,13 +3,13 @@ FROM nginx
 #move files from repo into container being built
 COPY ./html /var/www/html
 COPY ./development/www.connorlynch.ca.conf /etc/nginx/conf.d/www.connorlynch.ca.conf 
-COPY ./config/docker-entrypoint.sh /docker-entrypoint.sh 
-COPY ./config/lego-script.sh /etc/nginx/lego-script.sh
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh 
+COPY ./cert /cert
 
 #grant permission to the respective scripts
 RUN chmod 755 docker-entrypoint.sh
+RUN chmod -R 755 /cert
 RUN chmod -R 755 /docker-entrypoint.d
-RUN chmod 755 /etc/nginx/lego-script.sh
 
 #enable ports for http(s) communication
 EXPOSE 80
@@ -17,5 +17,13 @@ EXPOSE 443
 
 #get package updates for image and install needed software
 RUN apt-get update
+RUN apt-get -y install unzip
+RUN apt-get -y install curl jq
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install
+# install LightsailCTL Plugin (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-install-software)
+RUN curl https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl -o /usr/local/bin/lightsailctl
+RUN chmod +x /usr/local/bin/lightsailctl
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

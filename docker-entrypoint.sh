@@ -44,9 +44,6 @@ if [ "$1" = "nginx" ] || [ "$1" = "nginx-debug" ]; then
     fi
 fi
 
+/cert/obtain.sh
 
- # MODE=run /etc/nginx/lego-script.sh
-
-
-
-exec nginx -q -g "daemon off;"
+exec nginx -g "daemon off;"

@@ -1,2 +1,5 @@
 /config/config-lightsail.json
+.env
+./cert/cert-alt.sh
+
 
