@@ -1,7 +1,6 @@
 #!/bin/sh
 # vim:sw=4:ts=4:et
 
-
 #configure aws cli with deployer credentials
 aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}
 aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
@@ -9,8 +8,6 @@ aws configure set default.region ${REGION}
 aws configure set region ${REGION}
 cat ~/.aws/credentials
 
-
- 
 output=$(aws lightsail get-certificates --certificate-name "${CERT_NAME}" --include-certificate-details) 
 output=$(echo ${output} | jq .certificates)
 if [ -z "$output" ]; then
