@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Connor Lynch - Buzzer Forwarder</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	</head>
+	<body class="single is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+					<!-- Header -->
+					<header id="header">
+						<h1><a href="../index.html">connorlynch.ca</a></h1>
+						<nav class="main">
+							<ul>
+							<!---
+								<li class="search">
+									<a class="fa-search" href="#search">Search</a>
+									<form id="search" method="get" action="#">
+										<input type="text" name="query" placeholder="Search" />
+									</form>
+								</li>
+								--->					
+								<li class="menu"><a class="fa-bars" href="#menu">Menu</a></li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+
+						<!-- Search 							
+							<section>
+								<form class="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+								</form>
+							</section>
+							
+							--->
+
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="../index.html">
+											<h2>Home</h2>
+											<p>return to the homepage</p>
+										</a>
+									</li>
+									<li>
+										<h2>Projects</h2>
+										<p>View my projects and their repo</p>
+										<ul class="links">
+											<li><a href="website.html"><h3>Website</h3></a></li>
+											<li><a href="homeserver.html"><h3>Home Server</h3></a></li>
+											<li><a href="buzzerforwarder.html"><h3>Buzzer Forwarder</h3></a></li>
+										</ul>
+									</li>
+									<li>
+										<a href="../resume.html">
+											<h2>resume</h2>
+											<p>View and download my resume</p>
+										</a>
+									</li>
+								</ul>
+							</section>
+							<section>
+								<ul class="contacts">
+									<li><a target="_blank" href="tel:905-904-0151" class="icon solid fa-phone"> 905-904-0151</a></li>
+									<li><a target="_blank" href="mailto:connorealynch@gmail.com" class="icon solid fa-envelope"> connorealynch@gmail.com</a></li>	
+									<li><a target="_blank" href="https://github.com/ConnorEALynch" class="icon brands fa-github"> Github</a></li>
+									<li><a target="_blank" href="https://ca.linkedin.com/in/connorealynch" class="icon brands fa-linkedin"> LinkedIn</a></li>
+								</ul>
+							</section>
+						<!-- Actions
+							<section>
+								<ul class="actions stacked">
+									<li><a href="#" class="button large fit">Log In</a></li>
+								</ul>
+							</section>
+							
+							--->
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2>Buzzer Forwarder</h2>
+										<p>middle man service for single phone number buzzers</p>
+									</div>
+									<div class="meta">
+										<p> Last Updated: </p>
+										<time class="published" datetime="2015-11-01">November 1, 2015</time>
+									</div>
+								</header>
+								<span class="image featured"><img src="../images/pic01.jpg" alt="" /></span>
+							<p>After finishing college, A classmate and I moved into an apartment together. We immediately encountered a problem; the lobby buzzer only supported one phone number.</p>
+							<p>Searching for a solution I found services that would work with the building infrastructure, but during my search I found the resource to build my own and potentially cheaper. With that goal in mind I set out to make it more secure, cheaper, and feature dense. The first version accomplished the cheaper and secure using AWS secrets and lambda. The software was a cloud hosted function operating as a RESTful server, the function was most cost effective and the Twilio service needed server endpoints. Operating as a  “man-in-the-middle” the lobby was given a phone number with a programmatic backend that would trigger the function dialing and connecting whoever picked up first.</p>
+							<p>When it came time for a revision I wanted to include the features I couldn't in the first version and solve some bugs that appeared. Including a mute feature became a growing necessity as with the tenants inviting friends on their own schedule caused friction. By text a date and time to the programmatic phone number the sender would not receive calls from the buzzer. This also remedied a deeper rooted bug in the system. If a connection could not be established to a phone, neither would be dialed leaving guests downstairs very frustrated.</p>
+							<p>At this time some issues and regrets still persist in this project. Since moving I no longer have the need to update this project. View the repo for more details</p>
+							</article>
+					</div>
+					
+				<!-- Footer -->
+					<section id="footer">
+						<ul class="icons">
+							<li><a target="_blank" href="tel:905-904-0151" class="icon solid fa-phone"> 905-904-0151</a></li>
+							<li><a target="_blank" href="mailto:connorealynch@gmail.com" class="icon solid fa-envelope"> connorealynch@gmail.com</a></li>	
+							<li><a target="_blank" href="https://github.com/ConnorEALynch" class="icon brands fa-github"> Github</a></li>
+							<li><a target="_blank" href="https://ca.linkedin.com/in/connorealynch" class="icon brands fa-linkedin"> LinkedIn</a></li>							
+						</ul>
+						<p class="copyright">&copy; Untitled. Design: <a target="_blank" href="http://html5up.net">HTML5 UP</a>.</p>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+	</body>
+</html>

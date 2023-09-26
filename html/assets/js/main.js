@@ -11,7 +11,7 @@
 		$menu = $('#menu'),
 		$sidebar = $('#sidebar'),
 		$main = $('#main');
-
+		$wrapper = $('#wrapper');
 	// Breakpoints.
 		breakpoints({
 			xlarge:   [ '1281px',  '1680px' ],
