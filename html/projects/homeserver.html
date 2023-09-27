@@ -108,9 +108,36 @@
 									</div>
 								</header>
 								<iframe class="image featured" src="https://docs.google.com/document/d/e/2PACX-1vS_XANytyGjG5rDOAq4cipAibnYXUtbYqFv0NO-mPbvbuvjJozF4HmVtQqZDiLI-KBKLlq0UapUutHE/pub?embedded=true"></iframe>
-								<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-								<p>Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra. </p>
-							</article>
+								<p>As I learned about software, I would take on new programming challenges and explore new coding projects. Over time I collected hardware to host these endeavors from deprecated laptops to raspberry pis. Many of these projects got defunct or lost due to poor backup practices. When I came across a friend's old tower computer gathering dust in the garage, I knew it would be the last abandoned computer I would need.</p>
+								<p>I was determined to not have this project end up like the rest, so I began outlining my goals and hardware. I started compiling a list of everything I wanted my home lab to do. It quickly became apparent that a modular solution was necessary to separate the concerns of each function. This brought me to Proxmox, an operating system that specialized in hosting and preserving containers and virtual machines. With an OS installed and ample hardware the final part of planning was orchestrating the applications to perform and connect to each other as expected.</p>
+								<p>The list of applications will surely grow over time but for now it is as follows:</p>
+								<dl>
+									<dt><a href="https://www.home-assistant.io" target="_blank">Home Assistant</a></dt>
+									<dd>
+										<p>An operating system that gives granular control of Internet of things(IoT) devices connected to the LAN. By exposing programmatic access to home devices users can create routines more complex than proprietary apps.</p>									
+									</dd>
+									<dt><a href="https://jellyfin.org" target="_blank">Jellyfin</a></dt>
+									<dd>
+										<p>Media player with robust set of features including apps compatible with smart tvs and smart phones. Even though it supports a <i>torrent</i> of file types, the GPU is passed to this container for hardware accelerated video transcoding.</p>									
+									</dd>
+									<dt><a href="https://www.openmediavault.org/" target="_blank">Open Media Vault (OMV)</a></dt>
+									<dd>
+										<p>This virtual machine is designed to manage storage devices and storage pools. It offers features like shared folders for network storage and can be modified with plugins for further functionality</p>
+									</dd>
+									<dt><a href="https://github.com/bastienwirtz/homer" target="_blank">Homer</a></dt>
+									<dd>
+										<p>Acts as a homepage for the server. It is customizable to display links to other server applications in a visually pleasing UI. </p>
+									</dd>
+									<dt><a href="https://pi-hole.net/" target="_blank">Pi-hole</a></dt>
+									<dd>
+										<p>Software that lays between clients and the internet preventing ads from loading on device; more commonly known as a DNS sinkhole. Currently my router lacks support to implement this feature network wide.</p>
+									</dd>
+									<dt>General Purpose Testing Environment</dt>
+									<dd>
+										<p>This isn’t a single virtual machine or container, rather multiple with tools installed to test software in development</p>
+									</dd>
+								</dl>
+								</article>
 
 					</div>
 
