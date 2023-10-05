@@ -2566,6 +2566,7 @@ input, select, textarea {
 					display: none;
 				}
 
+
 /* info */
 
 	ul.info {
@@ -2573,7 +2574,7 @@ input, select, textarea {
 		list-style: none;
 		padding-left: 0;
 	    display: grid;
-		/*grid-template-columns: repeat(2, 2fr); */
+		text-align: left;
 		display: flex;
 		flex-flow: wrap column;
 		max-height: 80px;
@@ -2596,31 +2597,6 @@ input, select, textarea {
 					display: none;
 				}
 
-/* contacts */
-
-	ul.contacts {
-		cursor: default;
-		list-style: none;
-		padding-left: 0;
-	    display: grid;
-	}
-
-		ul.contacts li {
-			display: inline-block;
-			padding: 0 1em 0 0;
-		}
-
-			ul.contacts li:last-child {
-				padding-right: 0;
-			}
-
-			ul.contacts li > * {
-				border: 0;
-			}
-
-				ul.contacts li > * .label {
-					display: none;
-				}
 
 /* Posts */
 
@@ -3484,8 +3460,7 @@ input, select, textarea {
 
 		}
 		
-		
-	/*	
+			
 	@media screen and (max-width: 1280px) {
 
 		#sidebar {
@@ -3509,7 +3484,7 @@ input, select, textarea {
 
 
 	}
-	*/
+
 
 /* Intro */
 
@@ -3732,6 +3707,33 @@ input, select, textarea {
 					border-top: dotted 1px rgba(160, 160, 160, 0.3);
 					margin: 1em 0 0 0;
 					padding: 1em 0 0 0;
+				}
+				
+		/* contacts */
+
+	ul.contacts {
+		cursor: default;
+		list-style: none;
+		padding-left: 0;
+		list-style-type: none;
+		display: grid;
+	}
+
+		ul.contacts li {
+			display: inline-block;
+			padding: 0 1em 0 0;
+		}
+
+			ul.contacts li:last-child {
+				padding-right: 0;
+			}
+
+			ul.contacts li > * {
+				border: 0;
+			}
+
+				ul.contacts li > * .label {
+					display: none;
 				}
 
 		body.is-menu-visible #menu {
