@@ -12,8 +12,15 @@ output=$(aws lightsail get-certificates --certificate-name "${CERT_NAME}" --incl
 output=$(echo ${output} | jq .certificates)
 if [ -z "$output" ]; then
     echo "No certs"
-	aws lightsail create-certificate --certificate-name "${CERT_NAME}" --domain-name "connorlynch.ca" --subject-alternative-names  "${DOMAINS}"
-	aws lightsail attach-certificate-to-distribution --distribution-name "${DIST_NAME}" --certificate-name "${CERT_NAME}"
+	  error=$(aws lightsail create-certificate --certificate-name "${CERT_NAME}" --domain-name "connorlynch.ca" --subject-alternative-names "${DOMAINS}" --output text 2>&1)
+	  if [[ "$error" -ne 0 ]]; then
+		echo "an error occured creating certificate"
+	  else
+		error=$(aws lightsail attach-certificate-to-distribution --distribution-name "${DIST_NAME}" --certificate-name  "${CERT_NAME}"  --output text 2>&1)
+		if [[ "$error" -ne 0 ]]; then
+			echo "an error occured attaching certificate"
+		fi
+	  fi
 else
     echo "found cert, does it expire soon?"
 	# get the expiry datetime from JSON. split off time and collect date
@@ -25,10 +32,25 @@ else
 	if [ $now -ge $expiry ]; then
 		#no match 
 		echo "cert expires in 30 days, renew"
-		aws lightsail detach-certificate-from-distribution --distribution-name "${DIST_NAME}"
-		aws lightsail delete-certificate --certificate-name "${CERT_NAME}"
-		aws lightsail create-certificate --certificate-name "${CERT_NAME}" --domain-name "connorlynch.ca" --subject-alternative-names  "${DOMAINS}"
-		aws lightsail attach-certificate-to-distribution --distribution-name "${DIST_NAME}" --certificate-name  "${CERT_NAME}"
+		error=$(aws lightsail detach-certificate-from-distribution --distribution-name "${DIST_NAME}"  --output text 2>&1)
+		if [[ "$error" -eq 0 ]]; then
+			error=$(aws lightsail delete-certificate --certificate-name "${CERT_NAME}"  --output text 2>&1)
+			if [[ "$error" -eq 0 ]]; then
+				error=$(aws lightsail create-certificate --certificate-name "${CERT_NAME}" --domain-name "connorlynch.ca" --subject-alternative-names  "${DOMAINS}"  --output text 2>&1)
+				if [[ "$error" -eq 0 ]]; then
+					error=$(aws lightsail attach-certificate-to-distribution --distribution-name "${DIST_NAME}" --certificate-name  "${CERT_NAME}"  --output text 2>&1)
+					if [[ "$error" -ne 0 ]]; then
+						echo "an error occured attaching certificate to distribution"
+					fi
+				else
+					echo "an error occured creating certificate"
+				fi
+			else
+				echo "an error occured deleting old certificate"
+			fi
+		else 
+			echo "an error occured detaching old certificate"
+		fi
 	else
 		echo "cert is good no need to renew"
 	fi
