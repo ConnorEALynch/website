@@ -2,7 +2,7 @@ FROM nginx
 
 #move files from repo into container being built
 COPY ./html /var/www/html
-COPY ./development/www.connorlynch.ca.conf /etc/nginx/conf.d/www.connorlynch.ca.conf 
+COPY ./config/www.connorlynch.ca.conf /etc/nginx/conf.d/www.connorlynch.ca.conf 
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh 
 COPY ./cert /cert
 

@@ -22,4 +22,3 @@ services:
     #working_dir:
     ports:
       - '8080:80'
-      - '4433:443'
