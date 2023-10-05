@@ -18,8 +18,16 @@ jobs:
           context: .
           push: false
           tags: reverseproxy
-      - run: echo "This job's status is ${{ job.status }}."
+      
+      - name: step-complete
+        shell: bash
+        run: echo "This job's status is ${{ job.status }}."
+        
   # test job goes here
+  # Test-Image:
+  #   runs-on: ubuntu-latest
+  #   needs: Build-Image
+  
   Push-to-Lightsail:      
     runs-on: ubuntu-latest
     needs: Build-Image
@@ -60,5 +68,6 @@ jobs:
          
           aws lightsail create-container-service-deployment --region ${{ secrets.AWS_REGION }} --cli-input-json '${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}' 
 
-            
-      - run: echo "This job's status is ${{ job.status }}."
+      - name: step-complete
+        shell: bash
+        run: echo "This job's status is ${{ job.status }}."
