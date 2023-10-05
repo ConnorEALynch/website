@@ -2536,7 +2536,18 @@ input, select, textarea {
 	ul.icons {
 		cursor: default;
 		padding-left: 0;
-	    /*display: grid;*/
+	   
+	}
+	@media screen and (max-width: 736px) {
+		ul.icons {
+			display: grid;
+			cursor: default;
+			padding-left: 0;
+			display: flex;
+			flex-flow: wrap column;
+			max-height: 80px;
+		}
+
 	}
 
 		ul.icons li {
@@ -3561,6 +3572,12 @@ input, select, textarea {
 
 	#footer .icons {
 		color: #aaaaaa;
+	}
+	@media screen and (max-width: 736px) {
+		#footer .icons {
+		color: #aaaaaa;
+		text-align: left;
+	}
 	}
 
 	#footer .copyright {
