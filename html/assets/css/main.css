@@ -277,13 +277,31 @@ input, select, textarea {
 		font-family: "Courier New", monospace;
 		font-size: 0.9em;
 		margin: 0 0 2em 0;
+		
+		
 	}
+@media screen and (max-width: 1680px) {
+	.HTML {
+		white-space: pre-line;
+	}
+}
+	
 
 		pre code {
 			display: block;
 			line-height: 1.75em;
 			padding: 1em 1.5em;
-			overflow-x: auto;
+			overflow-x: clip;
+		}
+		@media screen and (max-width: 980px) {
+			.HTML {
+				white-space: pre;
+				max-height:30em;
+			}
+			pre {
+				white-space: pre;
+				max-height:20em;
+			}
 		}
 
 	hr {
@@ -2339,7 +2357,9 @@ input, select, textarea {
 			.image.featured img {
 				width: 100%;
 			}
+			
 
+	
 			@media screen and (max-width: 736px) {
 
 				.image.featured {

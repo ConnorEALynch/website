@@ -110,7 +110,21 @@
 										<time class="published" datetime="2015-10-18">October 25, 2023</time>
 									</div>
 								</header>
-								<a href="./projects/website" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+								<a href="./projects/website" >
+								<pre class="HTML"><code>&lt;h2&gt;&lt;a href="./projects/website"&gt;connorlynch.ca&lt;/a&gt;&lt;/h2&gt;
+		&lt;p&gt;The very website you are using right now!&lt;/p&gt;
+		&lt;a target="_blank" href="https://github.com/ConnorEALynch/website" class="icon brands fa-github"&gt; github.com/ConnorEALynch/website&lt;/a&gt;
+	&lt;/div&gt;
+	&lt;div class="meta"&gt;
+		&lt;p&gt; Last Updated: &lt;/p&gt;
+		&lt;time class="published" datetime="2015-10-18"&gt;October 25, 2023&lt;/time&gt;
+	&lt;/div&gt;
+&lt;/header&gt;
+&lt;pre&gt;	&lt;code&gt;code goes here&lt;/pre&gt;&lt;/code&gt;
+&lt;a href="./projects/website" class="image featured"&gt;&lt;/a&gt;
+&lt;p&gt;This website is the first step in a multi-part project for developing web based applications. In its current state it is a static website built with a responsive template, future versions will be built on a framework with server-side capabilities to allow for dynamic content.&lt;/p&gt;
+&lt;p&gt;This project has a deeper purpose beyond boasting about my schooling and credentials. The container this...&lt;/p&gt;</code></pre>
+								</a>
 								<p>This website is the first step in a multi-part project for developing web based applications. In its current state it is a static website built with a responsive template, future versions will be built on a framework with server-side capabilities to allow for dynamic content.</p>
 								<p>This project has a deeper purpose beyond boasting about my schooling and credentials. The container this...</p>
 								<footer>
@@ -154,7 +168,32 @@
 										<time class="published" datetime="2015-10-18">September 19, 2023</time>
 									</div>
 								</header>
-								<a href="projects/buzzerforwarder" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+								<a href="projects/buzzerforwarder" class="image featured">
+									<pre><code>@app.route('/call', methods = ['POST', 'GET'])
+@validate_call_request #send to the validator
+# FUNCTION: callTenants()
+# PARAMS: none
+# RETRUN: the voice response as a string, as per the twilio spec
+#
+def call_tenants():
+    
+    resp = VoiceResponse()
+    dial = Dial()
+    try:
+    #append all numbers that the mutemanager has determined are active
+        if not muter.bothMute:
+            for num in muter.callList:
+                dial.number(num)
+
+            resp.append(dial)
+        else:
+            resp.reject()
+        return str(resp)
+    except Exception as e:
+        print(e)
+        return handle_error(500, request)
+</pre></code>
+								</a>
 								<p>After finishing college, A classmate and I moved into an apartment together. We immediately encountered a problem; the lobby buzzer only supported one phone number.</p>
 								<p>Searching for a solution I found services that would work with the building infrastructure, but during my search I found the resource to build my own and potentially cheaper. With that goal in mind I set out to make it...</p>
 								<footer>
