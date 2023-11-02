@@ -280,7 +280,7 @@ input, select, textarea {
 		
 		
 	}
-@media screen and (max-width: 1680px) {
+@media screen and (max-width: 2000px) {
 	.HTML {
 		white-space: pre-line;
 	}
