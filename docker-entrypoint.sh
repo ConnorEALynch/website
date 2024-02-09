@@ -44,6 +44,5 @@ if [ "$1" = "nginx" ] || [ "$1" = "nginx-debug" ]; then
     fi
 fi
 
-/cert/obtain.sh
 
 exec nginx -g "daemon off;"
