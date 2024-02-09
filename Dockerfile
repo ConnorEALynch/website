@@ -14,19 +14,4 @@ RUN chmod -R 755 /cert
 #enable ports for http(s) communication
 EXPOSE 80
 
-#get package updates for image and install needed software
-RUN apt-get update
-RUN apt-get -y install unzip
-RUN apt-get -y install curl jq
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-RUN unzip awscliv2.zip
-RUN ./aws/install
-# install LightsailCTL Plugin (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-install-software)
-RUN curl https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl -o /usr/local/bin/lightsailctl
-RUN chmod +x /usr/local/bin/lightsailctl
-RUN apt-get -y install cron
-
-
-RUN crontab -l | { cat; echo "7 */12 * * * bash MODE=renew /cert/renew.sh"; } | crontab -
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
