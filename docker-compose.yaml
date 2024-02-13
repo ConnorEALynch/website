@@ -1,8 +1,11 @@
 # prod docker-compose
 version: '2.2'
 networks:
-  default:
-    name: website
+  website:
+    driver: bridge
+volumes:
+  static_volume:
+
 services:
   nginx:
     container_name: website-proxy
@@ -11,15 +14,28 @@ services:
     build:
       dockerfile: ./Dockerfile
       context: .
-    #environment:
-    #  - AWS_ACCESS_KEY_ID
-    #  - AWS_SECRET_ACCESS_KEY
-    #  - REGION
-    #  - CERT_NAME
-    #  - DIST_NAME
-    #  - DOMAINS
     env_file: .env
-    #working_dir:
     ports:
       - '80:80'
       - '443:443'
+    volumes:
+    - static_volume:/app/staticfiles
+    networks:
+    - website
+
+  
+  django:
+    container_name: land-collection
+    image: landcollection:latest
+    env_file: .env
+    ports: 
+      - '8000:8000'
+    networks:
+    - website
+    volumes:
+    - static_volume:/app/staticfiles
+    depends_on:
+      - nginx
+
+
+
