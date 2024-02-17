@@ -1,5 +1,5 @@
-/.aws/config-lightsail.json
-.github\workflows\lightsail-CICD.yaml
+.aws/config-lightsail.json
+.github/workflows/lightsail-CICD.yaml
 .env
 ./cert/cert-alt.sh
 ./cert/renew.sh
