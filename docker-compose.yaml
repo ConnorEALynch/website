@@ -14,7 +14,6 @@ services:
     build:
       dockerfile: ./Dockerfile
       context: .
-    env_file: .env
     ports:
       - '80:80'
       - '443:443'
@@ -22,20 +21,6 @@ services:
     - static_volume:/app/staticfiles
     networks:
     - website
-
-  
-  django:
-    container_name: land-collection
-    image: landcollection:latest
-    env_file: .env
-    ports: 
-      - '8000:8000'
-    networks:
-    - website
-    volumes:
-    - static_volume:/app/staticfiles
-    depends_on:
-      - nginx
 
 
 

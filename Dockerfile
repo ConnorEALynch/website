@@ -13,4 +13,4 @@ RUN chmod -R 755 /cert
 #enable ports for http(s) communication
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off"]
+CMD ["nginx", "-g", "daemon off;"]
