@@ -45,11 +45,6 @@ jobs:
 
     steps:
 
-    - name: check vars
-      run: |
-      echo "action_state=yellow" >> "$GITHUB_ENV"
-
-
     - name: Checkout
       uses: actions/checkout@v3
 
