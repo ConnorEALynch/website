@@ -1,0 +1,88 @@
+name: New Push
+run-name: ${{ github.actor }} is pushing a new change
+on: [push]
+jobs:
+  Build-Image:
+  #derived from examples used in:
+  #https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
+  #https://github.com/strategio-tech/fp-sim5-ec2read/blob/master/.github/workflows/main.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build
+        uses: docker/build-push-action@v5.0.0
+        with:
+          context: .
+          push: false
+          tags: reverseproxy
+          outputs: type=docker,dest=/tmp/reverseproxy.tar
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: reverseproxy
+          path: /tmp/reverseproxy.tar
+          
+      - run: echo "This job's status is ${{ job.status }}."
+        
+  # test job goes here
+  # Test-Image:
+  #   runs-on: ubuntu-latest
+  #   needs: Build-Image
+  
+  Push-to-Lightsail:      
+    runs-on: ubuntu-latest
+    needs: Build-Image
+    if: contains(github.ref, 'main')
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: reverseproxy
+          path: /tmp
+      - name: Load image
+        run: |
+          docker load --input /tmp/reverseproxy.tar
+          docker image ls -a   
+      - name: set-up credentials         
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set default.region $AWS_DEFAULT_REGION
+          aws configure set region $AWS_DEFAULT_REGION
+          cat ~/.aws/credentials
+          
+      - name: Install essentials
+        run: |
+          aws --version
+
+          # install LightsailCTL Plugin (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-install-software)
+          curl https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl -o /usr/local/bin/lightsailctl
+          chmod +x /usr/local/bin/lightsailctl
+      - name: push-container-and-deploy
+        env:
+          AWS_LIGHTSAIL_CONFIG: ${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}
+         
+        shell: bash         
+        run: |
+          echo "pushing container"
+          # upload the docker image for this pipeline
+          aws lightsail push-container-image \
+            --service-name connorlynch-website-containers  \
+            --label reverseproxy \
+            --image reverseproxy
+         
+          aws lightsail create-container-service-deployment --region ${{ secrets.AWS_REGION }} --cli-input-json '${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}' 
+
+      - run: echo "This job's status is ${{ job.status }}."

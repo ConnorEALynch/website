@@ -1,4 +1,4 @@
-/config/config-lightsail.json
+/.aws/config-lightsail.json
 .env
 ./cert/cert-alt.sh
 ./cert/renew.sh
