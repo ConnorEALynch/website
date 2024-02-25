@@ -2,6 +2,7 @@ name: New Push
 run-name: ${{ github.actor }} is pushing a new change
 on: [push]
 jobs:
+  environment: production
   Build-Image:
   #derived from examples used in:
   #https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
@@ -51,16 +52,11 @@ jobs:
           docker load --input /tmp/reverseproxy.tar
           docker image ls -a   
       - name: set-up credentials         
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-
         run: |
-          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-          aws configure set default.region $AWS_DEFAULT_REGION
-          aws configure set region $AWS_DEFAULT_REGION
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_ACCESS_KEY }}
+          aws configure set default.region ${{  vars.AWS_REGION }}
+          aws configure set region ${{  vars.AWS_REGION }}
           cat ~/.aws/credentials
           
       - name: Install essentials
@@ -71,9 +67,6 @@ jobs:
           curl https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl -o /usr/local/bin/lightsailctl
           chmod +x /usr/local/bin/lightsailctl
       - name: push-container-and-deploy
-        env:
-          AWS_LIGHTSAIL_CONFIG: ${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}
-         
         shell: bash         
         run: |
           echo "pushing container"
@@ -83,6 +76,6 @@ jobs:
             --label reverseproxy \
             --image reverseproxy
          
-          aws lightsail create-container-service-deployment --region ${{ secrets.AWS_REGION }} --cli-input-json '${{ secrets.AWS_LIGHTSAIL_SERVICE_CONFIG }}' 
+          aws lightsail create-container-service-deployment --region ${{ vars.AWS_REGION }} --cli-input-json '${{ vars.LIGHTSAI_CONFIG }}' 
 
       - run: echo "This job's status is ${{ job.status }}."
