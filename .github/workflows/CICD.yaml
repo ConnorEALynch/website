@@ -2,12 +2,12 @@ name: New Push
 run-name: ${{ github.actor }} is pushing a new change
 on: [push]
 jobs:
-  environment: production
   Build-Image:
   #derived from examples used in:
   #https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
   #https://github.com/strategio-tech/fp-sim5-ec2read/blob/master/.github/workflows/main.yml
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
