@@ -23,7 +23,7 @@ services:
 
   
   django:
-    container_name: land-collection
+    container_name: land-collection-dev
     image: landcollection:latest
     env_file: ../.env
     ports: 

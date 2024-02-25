@@ -2,8 +2,13 @@ FROM nginx
 
 #move files from repo into container being built
 COPY ./html /var/www/html
-COPY ./config/www.connorlynch.ca.conf /etc/nginx/conf.d/www.connorlynch.ca.conf 
-COPY ./config/_.connorlynch.ca.conf /etc/nginx/conf.d/_.connorlynch.ca.conf  
+COPY ./config/www.connorlynch.ca.conf /etc/nginx/conf.d/www.connorlynch.ca.conf
+COPY ./config/_.connorlynch.ca.conf /etc/nginx/conf.d/_.connorlynch.ca.conf 
+
+#parse nginx template using env substring
+#RUN export DOLLAR="$"
+#RUN /bin/bash -c "envsubst < config/_.connorlynch.ca.conf.template > /etc/nginx/conf.d/_.connorlynch.ca.conf"
+ 
 
 #grant permission to the respective scripts
 RUN chmod -R 755 /etc/nginx
@@ -11,5 +16,6 @@ RUN chmod -R 755 /etc/nginx
 RUN rm /etc/nginx/conf.d/default.conf
 #enable ports for http(s) communication
 EXPOSE 80
+
 
 CMD ["nginx-debug", "-g", "daemon off;"]
