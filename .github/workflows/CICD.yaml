@@ -51,14 +51,13 @@ jobs:
         run: |
           docker load --input /tmp/reverseproxy.tar
           docker image ls -a   
-      - name: set-up credentials         
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_ACCESS_KEY }}
-          aws configure set default.region ${{  vars.AWS_REGION }}
-          aws configure set region ${{  vars.AWS_REGION }}
-          cat ~/.aws/credentials
-          
+      - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
+            aws-region: ${{ vars.AWS_REGION }}
+              
       - name: Install essentials
         run: |
           aws --version
@@ -73,8 +72,8 @@ jobs:
           # upload the docker image for this pipeline
           aws lightsail push-container-image \
             --service-name connorlynch-website-containers  \
-            --label reverseproxy \
-            --image reverseproxy
+            --label ${{vars.CONATINER_NAME}} \
+            --image ${{vars.CONATINER_NAME}}
          
           aws lightsail create-container-service-deployment --region ${{ vars.AWS_REGION }} --cli-input-json '${{ vars.LIGHTSAI_CONFIG }}' 
 
