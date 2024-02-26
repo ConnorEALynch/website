@@ -7,6 +7,7 @@ jobs:
   #https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
   #https://github.com/strategio-tech/fp-sim5-ec2read/blob/master/.github/workflows/main.yml
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,6 +40,7 @@ jobs:
   Push-to-Lightsail:      
     runs-on: ubuntu-latest
     needs: Build-Image
+     environment: production
     if: contains(github.ref, 'main')
     steps:
       - name: Download artifact
