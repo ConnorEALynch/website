@@ -76,7 +76,7 @@ jobs:
             --service-name connorlynch-website-containers  \
             --label reverseproxy \
             --image reverseproxy
-         
+          echo ${{ vars.LIGHTSAIL_CONFIG }}
           aws lightsail create-container-service-deployment --region ca-central-1 --cli-input-json '${{ vars.LIGHTSAIL_CONFIG }}' 
 
       - run: echo "This job's status is ${{ job.status }}."
