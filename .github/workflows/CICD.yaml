@@ -7,7 +7,7 @@ jobs:
   #https://github.com/fdiesel/github-action-deploy-aws-lightsail-container/blob/main/action.yml
   #https://github.com/strategio-tech/fp-sim5-ec2read/blob/master/.github/workflows/main.yml
     runs-on: ubuntu-latest
-    environment: production
+      environment: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -50,31 +50,17 @@ jobs:
       - name: Load image
         run: |
           docker load --input /tmp/reverseproxy.tar
-          docker image ls -a   
-      - name: Configure AWS credentials
-          uses: aws-actions/configure-aws-credentials@v4
-          with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
-            aws-region: ${{ vars.AWS_REGION }}
-              
-      - name: Install essentials
-        run: |
-          aws --version
+          docker image ls -a  
 
-          # install LightsailCTL Plugin (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-install-software)
-          curl https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl -o /usr/local/bin/lightsailctl
-          chmod +x /usr/local/bin/lightsailctl
-      - name: push-container-and-deploy
-        shell: bash         
-        run: |
-          echo "pushing container"
-          # upload the docker image for this pipeline
-          aws lightsail push-container-image \
-            --service-name connorlynch-website-containers  \
-            --label ${{vars.CONATINER_NAME}} \
-            --image ${{vars.CONATINER_NAME}}
-         
-          aws lightsail create-container-service-deployment --region ${{ vars.AWS_REGION }} --cli-input-json '${{ vars.LIGHTSAI_CONFIG }}' 
-
-      - run: echo "This job's status is ${{ job.status }}."
+      - name: deploy image
+      uses: fdiesel/github-action-deploy-aws-lightsail-container@version
+      with:
+        image-name: ${{vars.CONTAINER_NAME}}
+        image: reverseproxy:latest
+        aws-region: ${{ vars.AWS_REGION }}
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-access-key: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-lightsail-service: connorlynch-website-containers
+        aws-lightsail-service-config: ${{ vars.LIGHTSAIL_CONFIG }}
+        aws-lightsail-clear-images: false      
+       
