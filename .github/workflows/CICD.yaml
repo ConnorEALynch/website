@@ -75,9 +75,9 @@ jobs:
           echo "pushing container"
           # upload the docker image for this pipeline
           aws lightsail push-container-image \
-            --service-name ${{LIGHTSAIL_CLUSTER}}  \
-            --label ${{CONTAINER_NAME}} \
-            --image ${{CONTAINER_NAME}}
+            --service-name ${{vars.LIGHTSAIL_CLUSTER}}  \
+            --label ${{vars.CONTAINER_NAME}} \
+            --image ${{vars.CONTAINER_NAME}}
           aws lightsail create-container-service-deployment --region ${{vars.AWS_REGION}} --cli-input-json '${{ vars.LIGHTSAIL_CONFIG }}' 
 
       - run: echo "This job's status is ${{ job.status }}."
