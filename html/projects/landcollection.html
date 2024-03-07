@@ -6,20 +6,20 @@
 -->
 <html>
 	<head>
-		<title>Connor Lynch - Resume</title>
+		<title>Connor Lynch - Land Collection</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	</head>
 	<body class="single is-preload">
 
 		<!-- Wrapper -->
 			<div id="wrapper">
 
-				<!-- Header -->
+					<!-- Header -->
 					<header id="header">
-						<h1><a href="/">connorlynch.ca</a></h1>
+						<h1><a href="../">connorlynch.ca</a></h1>
 						<nav class="main">
 							<ul>
 							<!---
@@ -51,7 +51,7 @@
 							<section>
 								<ul class="links">
 									<li>
-										<a href="/">
+										<a href="../">
 											<h2>Home</h2>
 											<p>return to the homepage</p>
 										</a>
@@ -67,7 +67,7 @@
 										</ul>
 									</li>
 									<li>
-										<a href="resume">
+										<a href="../resume">
 											<h2>resume</h2>
 											<p>View and download my resume</p>
 										</a>
@@ -75,7 +75,7 @@
 								</ul>
 							</section>
 							<section>
-								<h3>Contact me</h3>
+							<h3>Contact me</h3>
 								<ul class="contacts">
 									<li><a target="_blank" href="tel:905-904-0151" class="icon solid fa-phone"> 905-904-0151</a></li>
 									<li><a target="_blank" href="mailto:connorealynch@gmail.com" class="icon solid fa-envelope"> connorealynch@gmail.com</a></li>	
@@ -93,7 +93,7 @@
 							--->
 
 					</section>
-					
+
 				<!-- Main -->
 					<div id="main">
 
@@ -101,27 +101,24 @@
 							<article class="post">
 								<header>
 									<div class="title">
-										<h2><a href="resume">My Resume</a></h2>
-										<p>View my career experience and download a copy</p>
+										<h2>Land Collection</h2>
+										<p>magic land card tracking web app </p>
+										<a href="https://collection.connorlynch.ca">collection.connorlynch.ca</a>
 									</div>
 									<div class="meta">
 										<p> Last Updated: </p>
-										<time class="published" datetime="2015-11-01">January 22, 2024</time>
+										<time class="published" datetime="2024-03-06">March 5, 2024</time>
 									</div>
 								</header>
-								
-								<section>
-								<p><a target="_blank" href="https://ca.linkedin.com/in/connorealynch"> LinkedIn</a> has a comprehensive record of my work history and qualifications. References and letters of reccomendation are availble upon request</p>
-									<ul class="actions stacked large">
-										<li><a target="_blank" href="assets/documents/ConnorLynchResume.pdf" class="button primary large icon solid fa-download" download="ConnorLynchResume.pdf">Download</a><li>
-									</ul>
-								</section>
-								<iframe class="image featured" src="assets/documents/ConnorLynchResume.pdf" alt="" ></iframe>
-								
-							</article>
 
+								<span class="image featured"><img src="../images/landcollection.png" alt="" /></span>
+								<p>I have been playing Magic: the Gathering for over 13 years, slowly amassing cards. During that time I decided to narrow my efforts to collecting the most versatile game piece; lands. My friends were generous with donations, I rapidly accumulated stacks of unorganized cards with no immediate place to put them. I realized that manually keeping track of over 900 cards each with a variety of unique printings would be an impossible task. So I got to work designing a system to collate the cards and a database to track each land.</p>
+								<p>The first step was to build a database that would gather and sort the cards. I used scryfall’s API to make a database trigger that would query if any lands were released that day. Instead of manually sorting the cards I built functions that would do it automatically each card into the correct binder based on game attributes. The goal was to have the database stay up to date with new cards and sort only needing the scryfall API. The database was a success, keeping up with new set releases while I began working on the web app.</p>
+								<p>It was daunting taking on the website portion of this project, I prefer the M and C of ModelViewControl framework. Knowing I lacked an eye for design, I again looked to scryfall for inspiration, so <i>some</i> visual similarities may be noticed. The biggest hurdle aside from learning a new framework, was building a custom paginator. Typically digital collating does not have gaps in its queries, however since the website is a clone of a real item, a custom solution was necessary. Despite some pages looking sparse and some quality of life features missing, the app is responsive and does as advertised. For the first build I am happy with the results and excited for what's next.</p>	
+								<p>I am happy with the Alpha build of the website, the database sorting has some bugs and will need updates as card designs are innovated. The web app similarly has some issues and lacks some features, but will be rectified with future releases. Keep posted!</p>
+								</article>
 					</div>
-
+					
 				<!-- Footer -->
 					<section id="footer">
 						<ul class="icons">
@@ -136,11 +133,10 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 	</body>
 </html>
