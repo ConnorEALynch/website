@@ -1,5 +1,4 @@
 # prod docker-compose
-version: '2.2'
 networks:
   website:
     driver: bridge
